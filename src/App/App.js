@@ -3,7 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
 // Componentes que se renderizarán siempre
-import TopBar from "./components/topBar"
+import TopBarLayout from "./components/topBar"
 
 // Css
 import './App.css';
@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <TopBar></TopBar>
+          <TopBarLayout />
         </div>
       </MuiThemeProvider>
     );

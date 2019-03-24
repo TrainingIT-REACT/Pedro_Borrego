@@ -24,13 +24,13 @@ function BottomBar(props) {
                 justify="center"
                 alignItems="center">
                 <Grid item xs>
-                    <Paper>Bottom bar space 1</Paper>
+                    {/* <Paper>Bottom bar space 1</Paper> */}
                 </Grid>
                 <Grid item xs>
                     <Reproductor></Reproductor>
                 </Grid>
                 <Grid item xs>
-                    <Paper>Bottom bar space 2</Paper>
+                    {/* <Paper>Bottom bar space 2</Paper> */}
                 </Grid>
             </Grid>
 

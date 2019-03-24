@@ -139,7 +139,7 @@ const styles = theme => ({
     },
 });
 
-class PersistentDrawerLeft extends React.Component {
+class TopBarLayout extends React.Component {
     state = {
         open: false,
     };
@@ -257,9 +257,9 @@ class PersistentDrawerLeft extends React.Component {
     }
 }
 
-PersistentDrawerLeft.propTypes = {
+TopBarLayout.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft);
+export default withStyles(styles, { withTheme: true })(TopBarLayout);

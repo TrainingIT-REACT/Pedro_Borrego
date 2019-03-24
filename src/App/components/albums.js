@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import Grid from '@material-ui/core/Grid';
 import Loader from './loader';
+import AlbumCard from './albumCard';
 
 class Albums extends Component {
     constructor(props) {
@@ -28,13 +29,24 @@ class Albums extends Component {
     render() {
         return (
             <div>
-                {this.state.loading ?
-                    <Loader></Loader>
-                    : <ul>
-                        {this.state.albums.map(album => <li key={album.id}>{album.name}</li>)}
-                    </ul>
+                {
+                    this.state.loading ?
+                        <Loader />
+                        : <Grid
+                            container
+                            spacing={24}
+                            direction="row"
+                            justify="flex-start"
+                            alignItems="center"
+                        >
+                            {this.state.albums.map(album =>
+                                <Grid item xs={3}>
+                                    <AlbumCard title={album.name} picture={album.cover} artist={album.artist} />
+                                </Grid>)}
+                        </Grid>
                 }
             </div>
+
         )
     }
 
