@@ -31,7 +31,7 @@ import Perfil from "./perfil"
 import Inicio from './inicio'
 import Albums from './albums'
 import BottomBar from "./bottomBar"
-const Album = () => <p>Vista de detalle de album</p>;
+import Album from "./album"
 
 const drawerWidth = 240;
 
@@ -83,6 +83,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
+        marginBottom: 70
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -246,9 +247,10 @@ class TopBarLayout extends React.Component {
                         <div className={classes.drawerHeader} />
                         <Route path="/" exact component={Inicio} />
                         <Route path="/Inicio" exact component={Inicio} />
-                        <Route path="/Albums" component={Albums} />
+                        <Route path="/Albums" exact component={Albums} />
                         <Route path="/Login" component={Login} />
                         <Route path="/Perfil" component={Perfil} />
+                        <Route path="/Album/:id" exact component={Album} />
                         <BottomBar></BottomBar>
                     </main>
                 </Router>

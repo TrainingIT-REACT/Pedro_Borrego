@@ -23,7 +23,7 @@ class AlbumCard extends Component {
                     <CardMedia
                         className={this.props.classes.media}
                         image={"http://localhost:3001/" + this.props.picture}
-                        title="Contemplative Reptile"
+                        title={this.props.title}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">

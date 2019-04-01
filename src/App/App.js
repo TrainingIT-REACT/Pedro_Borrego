@@ -10,7 +10,6 @@ import './App.css';
 
 // Componentes que se renderizarán en las distintas rutas
 
-const Album = () => <p>Vista de detalle de album</p>;
 const theme = createMuiTheme({
   palette: {
     type: 'dark',

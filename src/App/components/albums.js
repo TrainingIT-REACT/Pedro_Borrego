@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Loader from './loader';
 import AlbumCard from './albumCard';
+import { NavLink } from "react-router-dom";
+
 
 class Albums extends Component {
     constructor(props) {
@@ -40,9 +42,12 @@ class Albums extends Component {
                             alignItems="center"
                         >
                             {this.state.albums.map(album =>
-                                <Grid item xs={3}>
-                                    <AlbumCard title={album.name} picture={album.cover} artist={album.artist} />
-                                </Grid>)}
+                                <Grid item sm={3}>
+                                    <NavLink to={'/Album/' + album.id}>
+                                        <AlbumCard title={album.name} picture={album.cover} artist={album.artist} />
+                                    </NavLink>
+                                </Grid>
+                            )}
                         </Grid>
                 }
             </div>
