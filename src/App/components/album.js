@@ -57,7 +57,7 @@ class Album extends Component {
                                 {this.state.songs.map(song =>
                                     song.album_id == this.state.albumId ?
                                         <Grid item sm={4} md={3}>
-                                            <SongCard title={song.name} duration={song.seconds} />
+                                            <SongCard {...song} />
                                         </Grid>
                                         : ''
                                 )}
