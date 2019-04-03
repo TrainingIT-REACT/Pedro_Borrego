@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
                 current: action.album,
                 visitedAlbums: state.visitedAlbums.includes(action.album) ? [
                     ...state.visitedAlbums, action.album
-                ] : visitedAlbums
+                ] : state.visitedAlbums
             };
         default:
             return state;

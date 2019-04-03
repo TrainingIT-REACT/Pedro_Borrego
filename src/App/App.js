@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
+import { Provider } from "react-redux";
+import store from './store';
 
 // Componentes que se renderizarán siempre
 import TopBarLayout from "./components/topBar"
@@ -23,11 +24,13 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <TopBarLayout />
-        </div>
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <MuiThemeProvider theme={theme}>
+          <div className="App">
+            <TopBarLayout />
+          </div>
+        </MuiThemeProvider>
+      </Provider>
     );
   }
 }

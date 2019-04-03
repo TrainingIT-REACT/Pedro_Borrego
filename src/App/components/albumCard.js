@@ -5,6 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { withRouter } from 'react-router-dom'
 
 const styles = {
     card: {
@@ -16,10 +17,17 @@ const styles = {
 };
 
 class AlbumCard extends Component {
+    constructor(props) {
+        super(props);
+        this.albumClick = this.albumClick.bind(this);
+    }
+    albumClick(event) {
+        this.props.history.push('/album/' + event.currentTarget.value)
+    }
     render() {
         return (
             <Card className={this.props.classes.card}>
-                <CardActionArea>
+                <CardActionArea onClick={this.albumClick} value={this.props.value}>
                     <CardMedia
                         className={this.props.classes.media}
                         image={"http://localhost:3001/" + this.props.picture}
@@ -39,4 +47,4 @@ class AlbumCard extends Component {
     };
 }
 
-export default withStyles(styles)(AlbumCard);
+export default withRouter(withStyles(styles)(AlbumCard));

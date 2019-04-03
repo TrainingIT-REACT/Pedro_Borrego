@@ -7,5 +7,5 @@ export const setCollection = (albums) => ({
 
 export const setCurrent = (album) => ({
     type: types.SET_CURRENT,
-    albums
+    album
 });

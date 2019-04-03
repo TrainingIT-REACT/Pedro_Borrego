@@ -2,30 +2,27 @@ import types from '../actions/types';
 
 // Estado inicial
 const initialState = {
-    user: null,
-    login: false
+    nowPLaying: null,
+    playing: false
 }
 
 // Implementamos el reducer
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.LOGIN:
+        case types.SET_PLAYING_SONG:
             return {
                 ...state,
-                user: action.user,
-                login: true
+                nowPLaying: action.song,
             };
-        case types.UPDATE_INFO:
+        case types.PLAY:
             return {
                 ...state,
-                user: action.user,
-                login: true
+                playing: true
             };
-        case types.LOGOUT:
+        case types.PAUSE:
             return {
                 ...state,
-                user: null,
-                login: false
+                playing: false
             }
         default:
             return state;

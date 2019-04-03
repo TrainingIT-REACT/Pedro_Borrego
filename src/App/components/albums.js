@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Loader from './loader';
 import AlbumCard from './albumCard';
-import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
 
+// Acciones
+import { setCollection } from '../actions/albums';
 
 class Albums extends Component {
     constructor(props) {
@@ -24,10 +26,12 @@ class Albums extends Component {
                 loading: false,
                 albums: json
             }));
+            this.props.setCollection(json);
         } catch (err) {
             console.error("Error accediendo al servidor", err);
         }
     }
+
     render() {
         return (
             <div>
@@ -42,10 +46,8 @@ class Albums extends Component {
                             alignItems="center"
                         >
                             {this.state.albums.map(album =>
-                                <Grid item sm={3}>
-                                    <NavLink to={'/Album/' + album.id}>
-                                        <AlbumCard title={album.name} picture={album.cover} artist={album.artist} />
-                                    </NavLink>
+                                <Grid item sm={3} onClick={this.albumClick} value={album}>
+                                    <AlbumCard title={album.name} picture={album.cover} artist={album.artist} value={album.id} />
                                 </Grid>
                             )}
                         </Grid>
@@ -56,4 +58,12 @@ class Albums extends Component {
     }
 
 }
-export default Albums;
+
+const mapDispatchToProps = (dispatch/*, otherProps */) => ({
+    setCollection: (i) => dispatch(setCollection(i)),
+})
+
+export default connect(
+    () => ({}),
+    mapDispatchToProps
+)(Albums);
