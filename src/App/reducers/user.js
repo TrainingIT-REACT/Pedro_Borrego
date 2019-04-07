@@ -2,19 +2,22 @@ import types from '../actions/types';
 
 // Estado inicial
 const initialState = {
-    user: null,
-    login: false
+    user: { usarname: "demo", password: "demo" },
+    login: false,
 }
 
 // Implementamos el reducer
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case types.LOGIN:
-            return {
+            return action.user.usarname == state.user.usarname && action.user.password == state.user.password ? {
                 ...state,
-                user: action.user,
                 login: true
-            };
+            } : {
+                    ...state,
+                    login: false
+                };
+
         case types.UPDATE_INFO:
             return {
                 ...state,
@@ -24,7 +27,6 @@ const reducer = (state = initialState, action) => {
         case types.LOGOUT:
             return {
                 ...state,
-                user: null,
                 login: false
             }
         default:

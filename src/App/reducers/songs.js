@@ -2,8 +2,18 @@ import types from '../actions/types';
 
 // Estado inicial
 const initialState = {
-    nowPLaying: null,
-    playing: false
+    //default song loaded on the player
+    nowPLaying: {
+        "id": "",
+        "name": "",
+        "audio": "",
+        "seconds": "",
+        "album_id": ""
+    },
+    history: [],
+    recomendations: [1, 3, 7, 9, 17, 28, 29, 40, 41, 42],
+    playing: false,
+    songlist: [],
 }
 
 // Implementamos el reducer
@@ -13,6 +23,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 nowPLaying: action.song,
+                history: [...state.history, action.song],
+                playing: true
             };
         case types.PLAY:
             return {
@@ -24,6 +36,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 playing: false
             }
+        case types.SET_SONGS_COLLECTION:
+            return {
+                ...state,
+                songlist: action.songs
+            }
+
         default:
             return state;
     }

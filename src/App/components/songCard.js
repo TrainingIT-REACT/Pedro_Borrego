@@ -40,6 +40,8 @@ class SongCard extends Component {
     constructor(props) {
         super(props);
         this.playClick = this.playClick.bind(this);
+        this.convertTime = this.convertTime.bind(this);
+
     }
     playClick(event) {
         this.props.setplayingSong({
@@ -50,6 +52,14 @@ class SongCard extends Component {
             "album_id": this.props.album_id
         })
     }
+    convertTime(sec) {
+        var min = Math.floor(sec / 60);
+        (min >= 1) ? sec = sec - (min * 60) : min = '00';
+        (sec < 1) ? sec = '00' : void 0;
+        (min.toString().length == 1) ? min = '0' + min : void 0;
+        (sec.toString().length == 1) ? sec = '0' + sec : void 0;
+        return min + ':' + sec;
+    }
     render() {
         return (
             <Card className={this.props.classes.card}>
@@ -59,12 +69,12 @@ class SongCard extends Component {
                             {this.props.name}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            {this.props.seconds}
+                            {this.convertTime(this.props.seconds)}
                         </Typography>
                     </CardContent>
                     <div className={this.props.classes.controls}>
-                        <IconButton aria-label="Play/pause">
-                            <PlayArrowIcon className={this.props.classes.playIcon} onClick={this.playClick} />
+                        <IconButton aria-label="Play/pause" onClick={this.playClick}>
+                            <PlayArrowIcon className={this.props.classes.playIcon} />
                         </IconButton>
                     </div>
                 </div>

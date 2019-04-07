@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
+
+//UI imports
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +16,6 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -144,9 +146,17 @@ class TopBarLayout extends React.Component {
     state = {
         open: false,
     };
+    constructor(props) {
+        super(props);
+        this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.handleDrawerClose = this.handleDrawerClose.bind(this);
 
+    }
     handleDrawerOpen = () => {
         this.setState({ open: true });
+        setTimeout(() => {
+            this.setState({ open: false });
+        }, 5000);
     };
 
     handleDrawerClose = () => {
@@ -205,7 +215,7 @@ class TopBarLayout extends React.Component {
                     >
                         <div className={classes.drawerHeader}>
                             <IconButton onClick={this.handleDrawerClose}>
-                                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                                <ChevronLeftIcon />
                             </IconButton>
                         </div>
                         <Divider />
@@ -245,11 +255,11 @@ class TopBarLayout extends React.Component {
                         })}
                     >
                         <div className={classes.drawerHeader} />
-                        <Route path="/" exact component={Inicio} />
-                        <Route path="/Inicio" exact component={Inicio} />
+                        <Route path="/" exact component={this.props.login ? Inicio : Login} />
+                        <Route path="/Inicio" exact component={this.props.login ? Inicio : Login} />
                         <Route path="/Albums" exact component={Albums} />
                         <Route path="/Login" component={Login} />
-                        <Route path="/Perfil" component={Perfil} />
+                        <Route path="/Perfil" component={this.props.login ? Perfil : Login} />
                         <Route path="/Album/:id" exact component={Album} />
                         <BottomBar></BottomBar>
                     </main>
@@ -264,4 +274,13 @@ TopBarLayout.propTypes = {
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(TopBarLayout);
+const mapStateToProps = (state/*, otherProps */) => {
+    return {
+        login: state.user.login,
+    }
+}
+export default connect(
+    mapStateToProps,
+    () => ({}),
+)(withStyles(styles)(TopBarLayout));
+// export default withStyles(styles)(TopBarLayout)

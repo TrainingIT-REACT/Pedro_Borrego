@@ -12,7 +12,8 @@ const actions = [
     //SONGS
     "SET_PLAYING_SONG",
     "PLAY",
-    "PAUSE"
+    "PAUSE",
+    "SET_SONGS_COLLECTION"
 
     //OPCIONAL PLAYLIST REDUCER ACTIONS
 ];

@@ -46,7 +46,7 @@ class Albums extends Component {
                             alignItems="center"
                         >
                             {this.state.albums.map(album =>
-                                <Grid item sm={3} onClick={this.albumClick} value={album}>
+                                <Grid item sm={3} onClick={this.albumClick} value={album} key={album.id}>
                                     <AlbumCard title={album.name} picture={album.cover} artist={album.artist} value={album.id} />
                                 </Grid>
                             )}

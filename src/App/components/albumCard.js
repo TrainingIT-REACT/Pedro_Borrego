@@ -28,11 +28,14 @@ class AlbumCard extends Component {
         return (
             <Card className={this.props.classes.card}>
                 <CardActionArea onClick={this.albumClick} value={this.props.value}>
-                    <CardMedia
-                        className={this.props.classes.media}
-                        image={"http://localhost:3001/" + this.props.picture}
-                        title={this.props.title}
-                    />
+                    {!this.props.time &&
+                        <CardMedia
+                            className={this.props.classes.media}
+                            image={"http://localhost:3001/" + this.props.picture}
+                            title={this.props.title}
+                        />
+                    }
+
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {this.props.title}
@@ -40,6 +43,12 @@ class AlbumCard extends Component {
                         <Typography component="p">
                             {this.props.artist}
                         </Typography>
+                        {this.props.time &&
+                            <Typography component="p">
+                                {"tiempo total: " + this.props.time}
+                            </Typography>
+                        }
+
                     </CardContent>
                 </CardActionArea>
             </Card>

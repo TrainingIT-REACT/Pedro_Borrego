@@ -13,3 +13,8 @@ export const play = () => ({
 export const pause = () => ({
     type: types.PAUSE
 });
+
+export const setSongList = (songs) => ({
+    type: types.SET_SONGS_COLLECTION,
+    songs
+});
