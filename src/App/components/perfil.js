@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 //UI imports
 import Grid from '@material-ui/core/Grid';
+import SongCard from './songCard';
+import AlbumCard from './albumCard';
 
 //actions
 import { editInfo } from '../actions/user'
@@ -90,7 +92,12 @@ class Profile extends React.Component {
                             <h1>Últimos albumes visitados</h1>
                         </Grid>
                         <Grid container direction="row" justify="center" alignItems="flex-start">
-
+                            {this.props.visitedAlbums.slice(this.props.visitedAlbums.length > 4 ?
+                                this.props.visitedAlbums.length - 4 : 0).map(album =>
+                                    <Grid item sm={3} onClick={this.albumClick} value={album} key={album.id}>
+                                        <AlbumCard title={album.name} picture={album.cover} artist={album.artist} value={album.id} />
+                                    </Grid>
+                                )}
                         </Grid></>
                 }
                 {
@@ -99,8 +106,13 @@ class Profile extends React.Component {
                         <Grid container direction="row" justify="center" alignItems="flex-start">
                             <h1>Últimas canciones reproducidas</h1>
                         </Grid>
-                        <Grid container direction="row" justify="center" alignItems="flex-start">
-
+                        <Grid container direction="row" justify="center" alignItems="flex-start" spacing={24}>
+                            {this.props.songHistroy.slice(this.props.songHistroy.length > 4 ?
+                                this.props.songHistroy.length - 4 : 0).map(song =>
+                                    <Grid item sm={4} md={3} key={song.id}>
+                                        <SongCard {...song} />
+                                    </Grid>
+                                )}
                         </Grid></>
                 }
             </>
