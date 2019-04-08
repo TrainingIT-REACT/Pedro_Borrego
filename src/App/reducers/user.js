@@ -2,7 +2,7 @@ import types from '../actions/types';
 
 // Estado inicial
 const initialState = {
-    user: { usarname: "demo", password: "demo" },
+    user: { usarname: "demo", password: "demo", email: "", telephone: "" },
     login: false,
 }
 
