@@ -255,8 +255,8 @@ class TopBarLayout extends React.Component {
                         })}
                     >
                         <div className={classes.drawerHeader} />
-                        <Route path="/" exact component={this.props.login ? Inicio : Login} />
-                        <Route path="/Inicio" exact component={this.props.login ? Inicio : Login} />
+                        <Route path="/" exact component={Inicio} />
+                        <Route path="/Inicio" exact component={Inicio} />
                         <Route path="/Albums" exact component={Albums} />
                         <Route path="/Login" component={Login} />
                         <Route path="/Perfil" component={this.props.login ? Perfil : Login} />
