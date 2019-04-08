@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 current: action.album,
-                visitedAlbums: state.visitedAlbums.includes(action.album) ? [
+                visitedAlbums: !state.visitedAlbums.includes(action.album) ? [
                     ...state.visitedAlbums, action.album
                 ] : state.visitedAlbums
             };

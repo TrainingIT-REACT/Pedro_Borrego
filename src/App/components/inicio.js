@@ -54,7 +54,7 @@ class Inicio extends React.Component {
                     >
 
                         {this.props.songs.map(song =>
-                            this.props.recomendations.includes(song.album_id) &&
+                            this.props.recomendations.indexOf(song.id) != -1 &&
                             <Grid item sm={4} md={3} key={song.id}>
                                 <SongCard {...song} />
                             </Grid>

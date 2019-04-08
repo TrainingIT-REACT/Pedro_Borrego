@@ -5,7 +5,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
+
+//actions
+import { setCurrent } from '../actions/albums';
 
 const styles = {
     card: {
@@ -22,6 +26,11 @@ class AlbumCard extends Component {
         this.albumClick = this.albumClick.bind(this);
     }
     albumClick(event) {
+        this.props.albums.forEach(album => {
+            if (album.id == event.currentTarget.value) {
+                this.props.setCurrent(album);
+            }
+        });
         this.props.history.push('/album/' + event.currentTarget.value)
     }
     render() {
@@ -55,5 +64,15 @@ class AlbumCard extends Component {
         )
     };
 }
-
-export default withRouter(withStyles(styles)(AlbumCard));
+const mapDispatchToProps = (dispatch/*, otherProps */) => ({
+    setCurrent: (i) => dispatch(setCurrent(i)),
+})
+const mapStateToProps = (state/*, otherProps */) => {
+    return {
+        albums: state.albums.collection,
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(withStyles(styles)(AlbumCard)));

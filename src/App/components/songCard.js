@@ -98,5 +98,3 @@ export default connect(
     mapDispatchToProps
 )(withStyles(styles)(SongCard));
 
-
-// export default withStyles(styles)(SongCard);
