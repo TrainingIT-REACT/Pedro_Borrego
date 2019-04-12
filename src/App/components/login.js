@@ -72,6 +72,7 @@ class Login extends Component {
                         className={classes.button}
                         onClick={this.doLogin}
                     > Login  </Button>
+                    <small>user:demo pass:demo</small>
 
                 </Grid>
             )
